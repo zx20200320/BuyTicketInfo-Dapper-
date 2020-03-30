@@ -1,0 +1,99 @@
+﻿@model IEnumerable<BuyTicketInfo.Models.TicketsModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p class="text-center h1">
+        火车票信息列表
+    </p>
+
+    <button style="height:40px;width:60px" id="add" name="add" value="添加" class="btn btn-primary col-md-offset-2" onclick="javascript:location.href='/BuyTicket/Create'">添加</button>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureStation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalStation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenPoint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSaleOut)
+            </th>
+
+        </tr>
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartureStation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArrivalStation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrainNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpenPoint)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeatNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeatLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketPrice)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.IsSaleOut)*@
+                        @if (item.IsSaleOut)
+                        {
+                            @:是
+                        }
+                        else
+                        {
+                            @:否
+                        }
+
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <p class="text-center">
+        <button style="height:60px;width:200px" id="add" name="add" class="btn btn-danger col-md-offset-2" onclick="javascript:location.href='/BuyTicket/Buy'">买&nbsp&nbsp&nbsp&nbsp票</button>
+    </p>
+
+</body>
+</html>
